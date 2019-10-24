@@ -29,6 +29,8 @@ benchmark(
   [beforeAll, afterAll, beforeEach, afterEach],
   iterations, logEach
 )
+
+benchmark([foo, bar, baz], null, 'benchName')
 ```
 
 <table>
@@ -58,12 +60,15 @@ Instead of logging `benchmark` can be used to return results as an object with s
 const b = benchmark([foo, bar, baz])
 ```
 
-- **b.fastest** - string - test name
-- **b.slowest** - string - test name
+- **b.fastestTest** - string - test name
+- **b.slowestTest** - string - test name
+- **b.fastestMS** - number
+- **b.slowestMS** - number
 - **b.opt** - object
-  - **b.opt.name** - default name is an SHA-1 hash
-  - **b.opt.start** - Date
-  - **b.opt.end** - Date
+  - **b.opt.benchName**
+  - **b.opt.benchStart** - Date
+  - **b.opt.benchEnd** - Date
+  - **b.opt.benchDuration** - ms
   - **b.opt.iterations** - number
   - **b.opt.callbacks** - object - {beforeAll...}
 - **b.res** - object - computed results
