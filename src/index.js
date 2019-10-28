@@ -1,5 +1,6 @@
 import benchmark from './benchmark'
-import Benchmark from './Benchmark'
+import Bench from './Bench'
 
-export benchmark
-export Benchmark
+export { benchmark, Bench }
+
+if (__DEV__) require('./demo.js')

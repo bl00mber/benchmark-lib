@@ -6,11 +6,13 @@ npm install benchmark-lib --save
 - A tool for **computing** and **logging** benchmarks
 - React component for rendering programmatically or manually injected benchmarks
 
+
 ## Contents
 - [benchmark](#benchmark)
 - [Example](#example)
-- [Benchmark](#benchmark-component)
+- [Bench](#benchmark-component)
 - [Support](https://www.paypal.me/bloomber/20)
+
 
 ## benchmark
 ```js
@@ -26,35 +28,14 @@ Other arguments (`null` can be passed to skip argument)
 benchmark(
   foo, bar, 'benchName',
   ['test1Name', 'test2Name'],
-  [beforeAll, afterAll, beforeEach, afterEach],
+  {beforeAll, afterAll, beforeEach, afterEach},
   iterations, logEach
 )
 
 benchmark([foo, bar, baz], null, 'benchName')
 ```
 
-<table>
-  <tr>
-    <th> Name </th>
-    <th> Type </th>
-    <th> Default </th>
-    <th> Description </th>
-  </tr>
-  <tr>
-    <td> iterations </td>
-    <td> number </td>
-    <td> 500 </td>
-    <td> </td>
-  </tr>
-  <tr>
-    <td> logEach </td>
-    <td> number </td>
-    <td> 100 </td>
-    <td> log during each `n` iteration, if `0` will log only log final result </td>
-  </tr>
-</table>
-
-Instead of logging `benchmark` can be used to return results as an object with summary info and an array of objects with computed results
+To return results as an object with summary info and an array of objects with computed results
 
 ```js
 const b = benchmark([foo, bar, baz])
@@ -77,6 +58,36 @@ const b = benchmark([foo, bar, baz])
 
 Default test names is t1, t2...
 
+<table>
+  <tr>
+    <th> Name </th>
+    <th> Type </th>
+    <th> Default </th>
+    <th> Description </th>
+  </tr>
+  <tr>
+    <td> iterations </td>
+    <td> number </td>
+    <td> 500 </td>
+    <td> </td>
+  </tr>
+  <tr>
+    <td> logEach </td>
+    <td> number </td>
+    <td> 100 </td>
+    <td> log during each `n` iteration, if `0` will log only log final result </td>
+  </tr>
+</table>
+
+
+## Callbacks args
+```js
+afterAll(result)
+beforeEach(testName, testCounter)
+afterEach(testName, ms)
+```
+
+
 ## Example
 ### for, forEach
 ```js
@@ -98,32 +109,67 @@ const forLoop = function () {
 const forEachLoop = function () {
   let cloned = fiboSeq.slice()
   cloned.forEach(o => {
-    fiboSeq[i] /= 2
+    o /= 2
   })
 }
 
 benchmark(forLoop, forEachLoop, 'for, forEach benchmark', ['for', 'forEach'])
 ```
 
+
 ## Benchmark component
 ```jsx
-import { Benchmark } from 'benchmark-lib'
+import { Bench } from 'benchmark-lib'
 import 'benchmark-lib/dist/style.css'
 
-<Benchmark
+<Bench
   firstTest={foo}
   secondTest={bar}
 />
 
-<Benchmark
+<Bench
   tests={[foo, bar, baz]}
   benchName='benchmark'
-  testnames={['foo', 'bar', 'baz']}
-  hooks={[beforeAll, afterAll, beforeEach, afterEach]}
+  testNames={['foo', 'bar', 'baz']}
+  callbacks={{beforeAll, afterAll, beforeEach, afterEach}}
   iterations={500}
   logEach={100}
 />
 ```
+
+<table>
+  <tr>
+    <td> hide </td>
+    <td> array </td>
+    <td> {['benchName', 'iterations', 'testNames', 'bars']} </td>
+  </tr>
+  <tr>
+    <td> trigger </td>
+    <td> literal </td>
+    <td> to run benchmark using keyboard, default `b` </td>
+  </tr>
+  <tr>
+    <td> disableTrigger </td>
+    <td> bool </td>
+    <td> </td>
+  </tr>
+  <tr>
+    <td> runOnInit </td>
+    <td> bool </td>
+    <td> </td>
+  </tr>
+  <tr>
+    <td> shortenIters </td>
+    <td> bool </td>
+    <td> </td>
+  </tr>
+  <tr>
+    <td> convertMS </td>
+    <td> bool </td>
+    <td> </td>
+  </tr>
+</table>
+
 
 ## License
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bl00mber/benchmark-lib/blob/master/LICENSE)

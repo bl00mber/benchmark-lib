@@ -51,6 +51,8 @@
     "jest": "^24.5.0",
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
     "react-hot-loader": "^4.8.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
@@ -61,12 +63,12 @@
     "webpack-merge": "^4.2.1"
   },
   "peerDependencies": {
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
   },
   "dependencies": {
     "lodash.random": "^3.2.0",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "prop-types": "^15.7.2",
+    "randomcolor": "^0.5.4"
   }
 }

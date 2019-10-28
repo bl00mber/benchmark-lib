@@ -1,0 +1,112 @@
+.bench__container {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 15px;
+  position: relative;
+  display: inline-block;
+  padding: 15px 20px;
+  margin: 15px;
+  box-shadow: 0 0 15px #cecece;
+  border-radius: 5px;
+  vertical-align: top;
+}
+
+.bench-name {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.bench-iters {
+  cursor: pointer;
+  font-size: 14px;
+  margin: 5px 0 10px;
+}
+
+.bench-results__bar {
+  height: 10px;
+  border-radius: 5px;
+  margin: 5px 0 10px;
+}
+
+// Triangle
+.bench-run__btn {
+  cursor: pointer;
+  position: relative;
+  height: 21px;
+  width: 80px;
+  margin-top: 15px;
+  padding: 4px 15px;
+  border-radius: 5px;
+  background: deepskyblue;
+  color: #fff;
+  &:active {
+    background: #0097ca;
+  }
+}
+
+.bench-run__btn:before {
+  content: '';
+  height: 0;
+  border-style: solid;
+  border-width: 6px 0 6px 13px;
+  border-color: transparent transparent transparent #ffffff;
+  position: absolute;
+  left: 45%;
+  top: 8px;
+}
+
+// Spinner
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 30px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 14px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: dodgerblue;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 6px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 6px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 26px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 45px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(19px, 0);
+  }
+}
