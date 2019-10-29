@@ -19,7 +19,8 @@
     "test",
     "testing",
     "react",
-    "javascript"
+    "javascript",
+    "component"
   ],
   "files": [
     "LICENSE",

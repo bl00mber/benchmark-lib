@@ -1,10 +1,14 @@
 # Benchmark-lib
+
+[![npm version](https://img.shields.io/npm/v/benchmark-lib.svg?style=flat)](https://www.npmjs.com/package/benchmark-lib)
+[![travis build](https://travis-ci.org/bl00mber/benchmark-lib.svg?branch=master)](https://travis-ci.org/bl00mber/benchmark-lib)
+
 ```shell-script
 npm install benchmark-lib --save
 ```
 
-- A tool for **computing** and **logging** benchmarks
-- React component for rendering programmatically or manually injected benchmarks
+A function for **computing** and **logging** benchmarks<br/>
+React component to render computed benchmarks
 
 
 ## Contents
@@ -100,16 +104,16 @@ const beforeAll = function () {
 }
 
 const forLoop = function () {
-  let cloned = fiboSeq.slice()
-  for (let i = 0; i < cloned.length; i++) {
-    cloned[i] /= 2
+  let clone = fiboSeq.slice()
+  for (let i = 0; i < clone.length; i++) {
+    clone[i] /= 2
   }
 }
 
 const forEachLoop = function () {
-  let cloned = fiboSeq.slice()
-  cloned.forEach(o => {
-    o /= 2
+  let clone = fiboSeq.slice()
+  clone.forEach((o, i) => {
+    clone[i] = o / 2
   })
 }
 
@@ -168,6 +172,8 @@ import 'benchmark-lib/dist/style.css'
     <td> </td>
   </tr>
 </table>
+
+![alt tag](https://raw.githubusercontent.com/bl00mber/benchmark-lib/master/test/index/screenshot.png)
 
 
 ## License
