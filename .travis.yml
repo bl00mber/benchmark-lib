@@ -3,5 +3,3 @@ node_js:
   - 'node'
 install:
   - npm install
-  - npm install react --save
-  - npm install react-dom --save

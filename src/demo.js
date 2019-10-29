@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { render } from 'react-dom'
-import Bench from './Bench'
+import { Bench } from './index'
 
 let fiboSeq = [1, 1]
 
@@ -29,7 +29,6 @@ export default render(
       benchName='benchmark'
       testNames={['forLoop', 'forEachLoop']}
       iterations={100000}
-      logEach={0}
     />
     <Bench
       tests={[forLoop, forEachLoop]}
@@ -40,9 +39,10 @@ export default render(
         afterAll: (result) => console.log(result),
       }}
       iterations={5000000}
-      logEach={0}
       trigger='e'
       runOnInit={false}
+    />
+    <Bench
     />
   </div>,
   document.getElementById('root')

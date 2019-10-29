@@ -16,12 +16,12 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 const random = require('lodash.random')
 
-const benchmark = function(test1Poly, test2, benchName, testNames, callbacks,
-  iterations, logEach
+const benchmark = function(test1Poly, test2, benchName, testNames, iterations,
+  callbacks, logEach
 ) {
   const tests = []
 
-  if (!test1Poly && !test2) throw new TypeError('at least 1 test needs to be specified')
+  if (!test1Poly && !test2) test1Poly = () => {}
 
   if (test1Poly.constructor.name == 'Array') {
     if (test1Poly.length === 0) throw new TypeError('if benchmark has only one argument as a test, it needs to be an array of tests (functions)')
@@ -51,6 +51,12 @@ const benchmark = function(test1Poly, test2, benchName, testNames, callbacks,
     if (testNames.constructor.name !== 'Array') throw new TypeError('testNames should be array')
   }
 
+  if (iterations) {
+    if (typeof iterations !== 'number') throw new TypeError('iterations value should be number')
+  } else {
+    iterations = 500
+  }
+
   if (callbacks) {
     Object.values(callbacks).forEach(o => {
       if (!!o && typeof o !== 'function') throw new TypeError('callbacks should be functions if defined')
@@ -59,16 +65,8 @@ const benchmark = function(test1Poly, test2, benchName, testNames, callbacks,
     callbacks = {}
   }
 
-  if (iterations) {
-    if (typeof iterations !== 'number') throw new TypeError('iterations value should be number')
-  } else {
-    iterations = 500
-  }
-
   if (logEach) {
     if (typeof logEach !== 'number') throw new TypeError('logEach value should be number')
-  } else {
-    if (logEach !== 0) logEach = 100
   }
 
 
@@ -81,7 +79,7 @@ const benchmark = function(test1Poly, test2, benchName, testNames, callbacks,
 
   tests.forEach(test => {
     testCounter += 1
-    const testName = testNames[testCounter-1] || 't'+testCounter
+    const testName = testNames && testNames[testCounter-1] || 't'+testCounter
     if (callbacks.beforeEach) callbacks.beforeEach(testName, testCounter)
 
     const testStart = new Date()
@@ -121,6 +119,7 @@ const benchmark = function(test1Poly, test2, benchName, testNames, callbacks,
   }
 
   if (callbacks.afterAll) callbacks.afterAll(bench)
+  if (logEach === 0) console.log(bench)
   return bench
 }
 

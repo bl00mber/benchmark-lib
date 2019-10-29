@@ -48,7 +48,7 @@ export default class Bench extends React.Component {
     testNames: null,
     callbacks: null,
     iterations: 500,
-    logEach: 100,
+    logEach: null,
 
     hide: [],
     trigger: 'b',
@@ -116,7 +116,7 @@ export default class Bench extends React.Component {
       const test1Poly = this.props.tests || this.props.firstTest
       const { test2, benchName, testNames, callbacks, iterations, logEach } = this.props
       const b = benchmark(test1Poly, test2, benchName, testNames,
-        callbacks, iterations, logEach)
+        iterations, callbacks, logEach)
 
       const resProcessed = this.processRes(b.res, b.slowestMS)
       this.setState({ disabled: true, resProcessed, benchName: b.opt.benchName })
@@ -125,9 +125,9 @@ export default class Bench extends React.Component {
 
   getIterValue = () => {
     const { iterations, shortenIters } = this.props
-    if (shortenIters && iterations > 1000) {
-      if (iterations > 1000000) {
-        if (iterations > 1000000000) {
+    if (shortenIters && iterations >= 1000) {
+      if (iterations >= 1000000) {
+        if (iterations >= 1000000000) {
           return (Math.trunc(iterations/1000000000))+'b'
         } else {
           return (Math.trunc(iterations/1000000))+'m'
@@ -139,8 +139,8 @@ export default class Bench extends React.Component {
   }
 
   time = (ms) => {
-    if (ms > 1000) {
-      if (ms > 60000) {
+    if (ms >= 1000) {
+      if (ms >= 60000) {
         return this.round(ms/60000)+'min'
       } else {
         return this.round(ms/1000)+'s'

@@ -27,9 +27,9 @@ Other arguments (`null` can be passed to skip argument)
 ```js
 benchmark(
   foo, bar, 'benchName',
-  ['test1Name', 'test2Name'],
+  ['test1Name', 'test2Name'], iterations,
   {beforeAll, afterAll, beforeEach, afterEach},
-  iterations, logEach
+  logEach
 )
 
 benchmark([foo, bar, baz], null, 'benchName')
@@ -74,8 +74,8 @@ Default test names is t1, t2...
   <tr>
     <td> logEach </td>
     <td> number </td>
-    <td> 100 </td>
-    <td> log during each `n` iteration, if `0` will log only log final result </td>
+    <td> 0 </td>
+    <td> log during each `n` iteration, `0` will log result </td>
   </tr>
 </table>
 
@@ -131,9 +131,8 @@ import 'benchmark-lib/dist/style.css'
   tests={[foo, bar, baz]}
   benchName='benchmark'
   testNames={['foo', 'bar', 'baz']}
-  callbacks={{beforeAll, afterAll, beforeEach, afterEach}}
   iterations={500}
-  logEach={100}
+  callbacks={{beforeAll, afterAll, beforeEach, afterEach}}
 />
 ```
 
